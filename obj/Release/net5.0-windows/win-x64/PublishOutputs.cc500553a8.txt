@@ -1,0 +1,13 @@
+C:\Users\programacion01\Desktop\eventosrecepcion\eventos exe\EventoMercantiles.exe
+C:\Users\programacion01\Desktop\eventosrecepcion\eventos exe\EventoMercantiles.dll
+C:\Users\programacion01\Desktop\eventosrecepcion\eventos exe\EventoMercantiles.deps.json
+C:\Users\programacion01\Desktop\eventosrecepcion\eventos exe\EventoMercantiles.runtimeconfig.json
+C:\Users\programacion01\Desktop\eventosrecepcion\eventos exe\EventoMercantiles.pdb
+C:\Users\programacion01\Desktop\eventosrecepcion\eventos exe\LiveCharts.dll
+C:\Users\programacion01\Desktop\eventosrecepcion\eventos exe\LiveCharts.Wpf.dll
+C:\Users\programacion01\Desktop\eventosrecepcion\eventos exe\Newtonsoft.Json.dll
+C:\Users\programacion01\Desktop\eventosrecepcion\eventos exe\System.CodeDom.dll
+C:\Users\programacion01\Desktop\eventosrecepcion\eventos exe\System.Data.Odbc.dll
+C:\Users\programacion01\Desktop\eventosrecepcion\eventos exe\System.Management.dll
+C:\Users\programacion01\Desktop\eventosrecepcion\eventos exe\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\programacion01\Desktop\eventosrecepcion\eventos exe\System.Text.Encoding.CodePages.dll

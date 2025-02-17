@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>EventoMercantiles</id>
+    <version>1.0.0</version>
+    <authors>EventoMercantiles</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net5.0-windows7.0">
+        <dependency id="LiveCharts.Wpf" version="0.9.7" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+        <dependency id="System.Data.Odbc" version="6.0.1" exclude="Build,Analyzers" />
+        <dependency id="System.Management" version="6.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net5.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="C:\Users\programacion01\Documents\programasc#\enventosmercantiles\EventoMercantiles\bin\Release\net5.0-windows\EventoMercantiles.runtimeconfig.json" target="lib\net5.0-windows7.0\EventoMercantiles.runtimeconfig.json" />
+    <file src="C:\Users\programacion01\Documents\programasc#\enventosmercantiles\EventoMercantiles\bin\Release\net5.0-windows\EventoMercantiles.dll" target="lib\net5.0-windows7.0\EventoMercantiles.dll" />
+  </files>
+</package>

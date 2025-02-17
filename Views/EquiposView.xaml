@@ -1,0 +1,43 @@
+﻿<Window x:Class="EventoMercantiles.Views.EquiposView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Listado de Equipos" Height="500" Width="900" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Campo de búsqueda -->
+        <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="0">
+            <TextBox x:Name="SearchTextBox" Width="250" Margin="0,0,10,0"
+                     Text="Buscar por Empresa o MAC" 
+                     Foreground="Gray"
+                     GotFocus="SearchTextBox_GotFocus" 
+                     LostFocus="SearchTextBox_LostFocus"/>
+            <Button x:Name="SearchButton" Content="Buscar" Width="100" Click="SearchButton_Click"/>
+        </StackPanel>
+
+        <!-- Tabla de Equipos -->
+        <DataGrid x:Name="EquiposDataGrid"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  Margin="10"
+                  Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Empresa" Binding="{Binding Empresa}" Width="150"/>
+                <DataGridTextColumn Header="MAC" Binding="{Binding NroMac}" Width="150"/>
+                <DataGridTextColumn Header="Máquina" Binding="{Binding Maquina}" Width="150"/>
+                <DataGridTextColumn Header="Fecha Activación" Binding="{Binding FechaActivacion}" Width="120"/>
+                <DataGridTextColumn Header="Fecha Suspensión" Binding="{Binding FechaSuspension}" Width="120"/>
+                <DataGridTemplateColumn Header="Acción" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Editar" Click="BtnEditarFechas_Click" Tag="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

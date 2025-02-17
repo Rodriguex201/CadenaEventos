@@ -1,0 +1,419 @@
+﻿<Window x:Class="EventoMercantiles.Views.Home"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EventoMercantiles.Views"
+        mc:Ignorable="d"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        Title="Home" Height="450" Width="1200"  WindowStartupLocation="CenterScreen" WindowState="Maximized" KeyDown="AbrirFormulario" 
+          Loaded="Window_Loaded">
+
+    <Grid x:Name="contenedor">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="152"/>
+            <RowDefinition Height="7"/>
+            <RowDefinition Height="26"/>
+            <RowDefinition Height="7.04"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="0,0,10,38" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="45*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="BtnOpenFile"                 
+                Width="60"                        
+                Grid.Column="0"                
+                Grid.Row="0"
+                ToolTip="Click para cargar el documento XML"
+                HorizontalAlignment="Left"
+                Margin="10,10,0,10"
+                Background="Transparent"
+                BorderBrush="White"
+                Click="BtnOpenFile_Click" 
+                >
+                    <Image  Source="/Recursos/upload.png"/>
+                </Button>
+                <Label x:Name="LbNombreArchivo" 
+               Content="Cargue el archivo .xml"
+               HorizontalAlignment="Left" 
+               Margin="75,0,0,0" 
+               Grid.Column="0"
+               Width="315"
+               FontWeight="Bold"
+               Foreground="White"
+               VerticalAlignment="Center" Height="26"
+                />
+                <Button  
+                 x:Name="BtnEnviar" 
+                Width="60"                
+                Grid.Column="0"
+                ToolTip="Boton para enviar el documento XML"
+                Grid.Row="1"
+                HorizontalAlignment="Left"
+                Margin="10,10,0,0"
+                Click="BtnEnvioPostEnventoMercantil_Click" 
+                Background="Transparent"
+                BorderBrush="White" Height="24" VerticalAlignment="Top"
+                >
+                    <Grid>
+                        <Image Source="/Recursos/send.png" HorizontalAlignment="Left"/>
+                    </Grid>
+                </Button>
+                <Label Content="Enviar"  Foreground="White"  FontWeight="Bold" FontSize="18" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="91" Height="38" RenderTransformOrigin="0.593,0.725" />
+                <!-- Botón para listar empresas con imagen -->
+                <Button  
+         x:Name="BtnMostrarEmpresas"
+         Width="60"
+         Visibility="Hidden" 
+         Grid.Row="2"
+         HorizontalAlignment="Left"
+         Margin="10,20,0,-33"
+         Background="Transparent"
+         BorderBrush="White"
+         Click="BtnMostrarEmpresas_Click" Grid.RowSpan="2">
+                    <Image Source="/Recursos/ListarEmp.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Button>
+
+
+            </Grid>
+            <Grid Grid.Column="1" VerticalAlignment="Center"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Label Content="Evento"  Foreground="White"  FontWeight="Bold" Grid.Row="0"  VerticalAlignment="Center" Height="26"/>
+                <ComboBox x:Name="Cbevento" SelectionChanged="Cbevento_SelectionChanged" Grid.Row="0" Width="160" Height="25" Margin="70,9,20,6" >
+                    <ComboBoxItem IsSelected="True">ACUSE_DOCUMENTO</ComboBoxItem>
+                    <ComboBoxItem>RECIBO_SERVICIO</ComboBoxItem>
+                    <ComboBoxItem>ACEPTACION_EXPRESA</ComboBoxItem>
+                    <ComboBoxItem>RECLAMO</ComboBoxItem>
+                </ComboBox>
+                <Label Content="CoRechazo"  Foreground="White"  FontWeight="Bold" Grid.Row="1" VerticalAlignment="Center" Height="26"/>
+                <ComboBox x:Name="Cbcodigorechazo" Grid.Row="1"  Width="160" Height="25" Margin="70,9,20,6" >
+                    <ComboBoxItem IsSelected="True">DOCUMENTO_CON_INCONSISTENCIAS</ComboBoxItem>
+                    <ComboBoxItem>MERCANCIA_NO_ENTREGADA_TOTALMENTE</ComboBoxItem>
+                    <ComboBoxItem>MERCANCIA_NO_ENTREGADA_PARCIALMENTE</ComboBoxItem>
+                    <ComboBoxItem>SERVICIO_NO_PRESTADO</ComboBoxItem>
+                </ComboBox>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="230"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="400"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Button Margin="0,5,0,0" x:Name="BtnRefresh" Click="BtnRefresh_Click"  Width="110"
+                                    Height="40" Background="Transparent" HorizontalAlignment="Left" BorderBrush="White" Grid.Column="0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="Refrescar" Margin="-14,0,4,0" FontWeight="Bold" HorizontalContentAlignment="Left" 
+                                           VerticalContentAlignment="Center" Grid.Column="0" Foreground="White" />
+                                    <Image Grid.Column="1" Source="/Recursos/refresh.png" />
+                                </Grid>
+                            </Button>
+                            <Button Margin="0,5,0,0" HorizontalAlignment="Right"  x:Name="BtnExit" Click="BtnExit_Click"
+                        Width="110" Height="40" Background="Transparent" BorderBrush="White" Grid.Column="1" >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="Terminar" Margin="-14,0,5,0" FontWeight="Bold" HorizontalContentAlignment="Left" 
+                                           VerticalContentAlignment="Center" Grid.Column="0" Foreground="White" />
+                                    <Image Grid.Column="1" Source="/Recursos/power-off.png" Margin="5,0,-5,0" />
+                                </Grid>
+                            </Button>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ToggleButton 
+                                      x:Name="BtnShowHide"
+                                      HorizontalAlignment="Left"
+                                Visibility="Hidden"
+                                      BorderBrush="White"
+                                      Width="110"
+                                      Height="40"                                  
+                                      Background="Transparent"
+                                      ToolTip="Seleccione una visita de tabla"
+                                      Checked="TBShow" Unchecked="TBHide">
+                                <ToggleButton.Content>
+                                    <Grid>
+                                        <Label Content="Informes" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Margin="-47,0,0,0" />
+                                        <Image x:Name="ToggleImage" Source="/Recursos/chart.png"  HorizontalAlignment="Right" VerticalAlignment="Top"  Width="30" Height="30" Margin="0,0,-41,0" />
+                                    </Grid>
+                                </ToggleButton.Content>
+                            </ToggleButton>
+                        </Grid>
+                    </Grid>
+                </Border>
+                <Grid Grid.Column="1" >
+                    <Image x:Name="LogoEmpresa"  Source="/Recursos/logo-rm-soft.png" Margin="10,10,0,10" HorizontalAlignment="Right" />
+                </Grid>
+                <Grid Grid.Column="2" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="nombre" x:Name="lbnombre" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                           FontWeight="Bold" Foreground="White" FontSize="15"/>
+                    <Label Content="nombre 2" x:Name="lbnombre2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top"
+                           FontWeight="Bold" Foreground="White" FontSize="15"/>
+                    <Label Content="nit" x:Name="lbnit" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                           FontWeight="Bold" Foreground="White" FontSize="15"/>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Border Grid.Row="1" BorderBrush="White" BorderThickness="1" Grid.RowSpan="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="638"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" >
+                    <Label Content="Buscar"  Foreground="White"  HorizontalAlignment="Left" FontWeight="Bold" Grid.Row="2" Width="50"  VerticalAlignment="Center" Height="26" Margin="10,0,0,0" />
+                    <TextBox x:Name="TxtBusqueda" ToolTip="Para buscar presione ENTER" 
+                     HorizontalAlignment="Left" Margin="80,0,0,0" 
+                       TextWrapping="Wrap" VerticalAlignment="Center" Width="160" Height="24"/>
+                    <Button   Height="25" 
+                          Click="BtnBuscar_Click"
+                          Background="Transparent"
+                          BorderBrush="White"                          
+                          Width="60"  x:Name="BtnBuscar" Margin="253,0,325,2" >
+                        <Image Source="/Recursos/search.png" HorizontalAlignment="Left"/>
+                    </Button>
+                    <Label Content="Del" Foreground="White" FontWeight="Bold" Width="30" Margin="335,0,273,0"  />
+                    <DatePicker x:Name="datede" Width="110" HorizontalAlignment="Left"   VerticalAlignment="Center" Margin="367,0,0,0" />
+                    <Label Content="Hasta" Foreground="White" FontWeight="Bold" Width="40" Margin="484,1,114,-1" />
+                    <DatePicker x:Name="datehasta" Width="110" HorizontalAlignment="Right" Margin="0,4,0,0"  VerticalAlignment="top"/>
+                </Grid>
+                <Grid Grid.Column="1" >
+                    <ComboBox x:Name="filtroevento" SelectionChanged="Filtroevento_SelectionChanged" Grid.Row="0" Height="25" Width="140" >
+                        <ComboBoxItem IsSelected="True">Filtrar Eventos</ComboBoxItem>
+                        <ComboBoxItem>ACUSE_DOCUMENTO</ComboBoxItem>
+                        <ComboBoxItem>RECIBO_SERVICIO</ComboBoxItem>
+                        <ComboBoxItem>ACEPTACION_EXPRESA</ComboBoxItem>
+                        <ComboBoxItem>RECLAMO</ComboBoxItem>
+                    </ComboBox>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <ComboBox x:Name="filtrocodigo" SelectionChanged="Filtrocodigo_SelectionChanged" Grid.Row="0" Height="25" Width="100" >
+                        <ComboBoxItem IsSelected="True">Filtrar Codigo</ComboBoxItem>
+                        <ComboBoxItem >EXITOSO</ComboBoxItem>
+                        <ComboBoxItem>ERROR</ComboBoxItem>
+                        <ComboBoxItem>ERRORDIAN</ComboBoxItem>
+                    </ComboBox>
+
+                </Grid>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="4" x:Name="tabladatos" Margin="0,2,0,0">
+            <DataGrid x:Name="Lista_eventos" 
+                      FrozenColumnCount="7"  
+                      HeadersVisibility="Column"  
+                      AlternatingRowBackground = "LightBlue" 
+                      Background="Transparent" 
+                      CanUserAddRows="False"  
+                      AutoGenerateColumns="False" 
+                      SelectionMode="Single" 
+                      SelectionChanged="Lista_eventos_SelectionChanged">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Eliminar Factura" Click="MenuItem_Click"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="#QRcode"   Width="80">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate >
+                                <Button  
+                                        x:Name="BtnQRcode"
+                                        Height="25"
+                                        Width="80"
+                                        ToolTip="Click para visualizar el documento en la Dian"
+                                        HorizontalAlignment="Center"                                    
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Click="BtnQRcode_Click"                                        
+                                        >
+                                    <Image  Source="/Recursos/search.png"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="#Documento"  Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Width="100"   ToolTip="{Binding Even_docum }"  TextAlignment="Center" Text="{Binding Even_docum }" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Emisor" Width="200" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Width="200"  TextAlignment="Center" ToolTip="{Binding Even_receptor}" Text="{Binding Even_receptor}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Identificador" Width="100" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Width="100"  TextAlignment="Center" ToolTip="{Binding Even_identif}" Text="{Binding Even_identif}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Fecha" Width="150" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Width="150"  TextAlignment="Center" ToolTip="{Binding Even_fecha}" Text="{Binding Even_fecha}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Evento" Width="150">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Width="150"  TextAlignment="Center" Foreground="Black"  Background="{Binding Color}" ToolTip="{Binding Even_evento}" Text="{Binding Even_evento}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Codigo" Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Width="100"  TextAlignment="Center" ToolTip="{Binding Even_codigo}" Text="{Binding Even_codigo}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Respuesta" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Width="Auto"  TextAlignment="Center" ToolTip="{Binding Even_response}" Text="{Binding Even_response}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid x:Name="Informes" Background="White"  Grid.Row="1" Grid.RowSpan="4" Width="1200" HorizontalAlignment="Center" Height="800"  VerticalAlignment="Top" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="600"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Border  Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="9*"/>
+                        <RowDefinition Height="391*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="41*" />
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="107*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox Padding="-5,0,-5,0" BorderBrush="Transparent" Grid.Column="0" x:Name="ListaInformes"   Margin="30,0,0,0" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="Black" Width="500" BorderThickness="1" CornerRadius="5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Grid Grid.Row="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="340"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label FontWeight="Bold" Content="{Binding Even_receptor}" Grid.Column="0"/>
+                                            <Label Content="{Binding Contador}" Grid.Column="1"/>
+                                        </Grid>
+                                        <Grid Grid.Row="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="140"/>
+                                                <ColumnDefinition Width="140"/>
+                                                <ColumnDefinition Width="140"/>
+                                                <ColumnDefinition Width="120"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0" >
+                                                <Label Content="Acuse documento" HorizontalAlignment="Left" />
+                                                <Label Content="{Binding Contador}" HorizontalAlignment="Center" Margin="90,0,0,0"/>
+                                            </Grid>
+                                            <Grid Grid.Column="1">
+                                                <Label Content="Recibo servicio" HorizontalAlignment="Left" />
+                                                <Label Content="{Binding Contador}" HorizontalAlignment="Center" Margin="60,0,0,0"/>
+                                            </Grid>
+                                            <Grid Grid.Column="2">
+                                                <Label Content="Aceptacion Expresa" HorizontalAlignment="Left" />
+                                                <Label Content="{Binding Contador}" HorizontalAlignment="Center" Margin="99,0,0,0"/>
+                                            </Grid>
+                                            <Grid Grid.Column="3">
+                                                <Label Content="Reclamo" HorizontalAlignment="Left" />
+                                                <Label Content="{Binding Contador}" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid Grid.Row="2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0" >
+                                                <Label Content="EXITOSO" HorizontalAlignment="Left" />
+                                                <Label Content="{Binding Contador}" HorizontalAlignment="Center" />
+                                            </Grid>
+                                            <Grid Grid.Column="1">
+                                                <Label Content="ERROR" HorizontalAlignment="Left" />
+                                                <Label Content="{Binding Contador}" HorizontalAlignment="Center" />
+                                            </Grid>
+                                            <Grid Grid.Column="2">
+                                                <Label Content="ERRORDIAN" HorizontalAlignment="Left" />
+                                                <Label Content="{Binding Contador}" HorizontalAlignment="Center" />
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Border>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <lvc:PieChart Grid.Column="0" LegendLocation="Right" x:Name="torta" Hoverable="False" />
+                <!--<lvc:CartesianChart  Grid.Column="1" x:Name="Graficalineas"/>-->
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

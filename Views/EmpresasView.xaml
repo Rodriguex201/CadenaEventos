@@ -1,0 +1,43 @@
+﻿<Window x:Class="EventoMercantiles.Views.EmpresasView" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Listado de Empresas" Height="550" Width="900" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Filtros por año y botón de consulta de equipos -->
+        <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="0">
+            <ComboBox x:Name="YearComboBox" Width="100" Margin="0,0,10,0" />
+            <Button x:Name="FilterButton" Content="Filtrar por Año" Width="120" Click="FilterButton_Click" />
+            <Button x:Name="BtnConsultarEquipos" Content="Consultar Equipos" Width="150" Click="BtnConsultarEquipos_Click" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <!-- Campo de búsqueda -->
+        <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="1">
+            <TextBox x:Name="SearchTextBox" Width="250" Margin="0,0,10,0"
+                     Text="Buscar por Nombre, NIT o Código" 
+                     Foreground="Gray"
+                     GotFocus="SearchTextBox_GotFocus" 
+                     LostFocus="SearchTextBox_LostFocus" />
+            <Button x:Name="SearchButton" Content="Buscar" Width="100" Click="SearchButton_Click" />
+        </StackPanel>
+
+        <!-- Tabla de datos con menú contextual -->
+        <DataGrid x:Name="EmpresasDataGrid"
+                  AutoGenerateColumns="True"
+                  IsReadOnly="True"
+                  Margin="10"
+                  Grid.Row="2">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Generar Clave" Click="GenerarClaveMenuItem_Click" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+    </Grid>
+</Window>

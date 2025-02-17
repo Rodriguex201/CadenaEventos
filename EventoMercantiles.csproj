@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>confirm.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Recursos\ListarEmp.png" />
+    <None Remove="Views\chart.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LiveCharts" Version="0.9.7" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Data.Odbc" Version="6.0.1" />
+    <PackageReference Include="System.Management" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Recursos\ListarEmp.png" />
+    <Resource Include="Recursos\logo-rm-soft.png" />
+    <Resource Include="Recursos\upload.png" />
+    <Resource Include="Recursos\send.png" />
+    <Resource Include="Recursos\check.png" />
+    <Resource Include="Recursos\close.png" />
+    <Resource Include="Recursos\search.png" />
+    <Resource Include="Recursos\refresh.png" />
+    <Resource Include="Recursos\power-off.png" />
+    <Resource Include="Recursos\chart.png" />
+  </ItemGroup>
+
+</Project>
