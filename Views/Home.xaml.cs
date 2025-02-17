@@ -446,7 +446,7 @@ namespace EventoMercantiles.Views
                 Fecha = DateTime.Now.ToString();
                 Codigo = string.Empty;
                 foreach (var item in dato)
-                {
+                { 
                     if (item.Key.Equals("prefijoyfactura"))
                     {
                         PrefijoFactura = string.Empty;
