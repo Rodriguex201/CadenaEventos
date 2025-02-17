@@ -140,3 +140,4 @@ C:\Users\usuario\source\repos\EventoMercantiles\EventoMercantiles\obj\Debug\net5
 C:\Users\usuario\source\repos\EventoMercantiles\EventoMercantiles\obj\Debug\net5.0-windows\ref\EventoMercantiles.dll
 C:\Users\usuario\source\repos\EventoMercantiles\EventoMercantiles\obj\Debug\net5.0-windows\Views\EditarFechasView.baml
 C:\Users\usuario\source\repos\EventoMercantiles\EventoMercantiles\obj\Debug\net5.0-windows\Views\EditarFechasView.g.cs
+C:\Users\usuario\source\repos\EventoMercantiles\EventoMercantiles\obj\Debug\net5.0-windows\EventoMercantiles.sourcelink.json
